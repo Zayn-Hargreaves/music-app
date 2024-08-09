@@ -1,0 +1,52 @@
+extends ../../layouts/default.pug 
+include ../../mixins/box-head.pug
+block main 
+    +box-head("Chi tiết bài hát")   
+    if(song.title)
+        h1(class="mb-4") #{song.title}
+    if(song.avatar)
+        div(class="mb-4")
+            img(
+                src=song.avatar 
+                style="width: 100px"
+            )
+    if(singers.fullName)
+        div(class="mb-4")
+            span Ca sĩ:
+                div #{singers.fullName}
+    if(topics.title)
+        div(class="mb-4")
+            span Chủ đề:
+                div #{topics.title}
+    if(song.status)
+        div(class="mb-4")
+            span Trạng thái: 
+            if(song.status ==="active")
+                span(class="badge badge-success") Hoạt động
+            else 
+                span(class="badge badge-danger") Không hoạt động
+            div(class="inner-action inner-like")
+                <i class="fa-regular fa-thumbs-up"></i>
+                span(class="inner-number mr-1") #{song.like}
+                | thích
+            div(class="inner-action inner-listen")
+                <i class="fa-solid fa-headphones"></i>
+                span(class="inner-number mr-1") #{song.listen}
+                | lượt nghe
+    if(song.description)
+        div(class="mb-4")
+            span Mô tả:
+                div #{song.description}
+    if(song.audio)
+        audio(controls autoplay loop preload)
+            source( src=song.audio )
+    if(song.lyrics)
+        div(class="mb-4")
+            span Lời bài hát: 
+                div !{song.lyrics}
+    a(
+        href=`/${prefixAdmin}/songs/edit/${song.id}`
+        class = "btn btn-warning btn-sm"
+    ) Chỉnh sửa 
+    //- script(src="/admin/js/product.js")
+    //- script(src="/admim/js/script.js") 

@@ -1,0 +1,12 @@
+
+mixin info-item(item)
+    .col-4.mb-3
+        .product-item
+            .inner-image
+                a(href=`/songs/${item.slug}`)
+                img(src=item.avatar, alt=item.title)
+            .inner-content
+                h3.inner-title
+                a(href=`/songs/${item.slug}`) #{item.title}
+                p(class="card-text") #{item.description}
+                a(href=`/songs/${item.slug}` class="btn btn-primary") Xem chi tiết
