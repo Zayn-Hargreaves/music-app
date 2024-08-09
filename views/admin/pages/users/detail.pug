@@ -1,0 +1,23 @@
+extends ../../layouts/default.pug 
+include ../../mixins/box-head.pug
+block main 
+    +box-head(pageTitle)   
+    if(records.fullName)
+        h1(class="mb-4") #{records.fullName}
+        div(class="mb-4")
+            img(
+                src=records.avatar ? records.avatar :"/images/avatar.jpg"
+                style="width: 100px"
+            )
+    if(records.email)
+        div(class="mb-4")
+            span Email: 
+                div #{records.email}
+    if(records.status)
+        div(class="mb-4")
+            span Trạng thái: 
+            if(records.status ==="active")
+                span(class="badge badge-success") Hoạt động
+            else 
+                span(class="badge badge-danger") Không hoạt động
+    

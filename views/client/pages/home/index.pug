@@ -1,0 +1,31 @@
+extends ../../layouts/default.pug
+include ../../mixins/layout-item.pug
+include ../../mixins/box-head.pug
+include ../../mixins/info-song.pug
+block main
+  if(topics.length > 0)
+    .container.my-3
+      .row
+        .col-12
+          +box-head("Chủ đề nổi bật")
+      +layout-item(initialTopics)
+
+      if topics.length > 3
+        hr.my-4
+        .row.justify-content-center.mt-3
+          .col-12.text-center
+            button.btn.btn-primary#show-more Xem thêm
+  if( listenSong.length > 0)
+    .container.my-3
+      .row
+        .col-12
+          +box-head("Danh sách bài hát được nghe nhiều nhất")
+      +info-song(listenSong)
+  if( likeSong.length > 0)
+    .container.my-3
+      .row
+        .col-12
+          +box-head("Danh sách bài hát được nghe nhiều nhất")
+      +info-song(likeSong)
+  script(type="application/json" id="topics-data")
+    != JSON.stringify(topics)

@@ -1,0 +1,33 @@
+extends ../../layouts/default.pug 
+include ../../mixins/box-head.pug
+block main 
+    +box-head(pageTitle)   
+    if(topic.title)
+        h1(class="mb-4") #{topic.title}
+    if(topic.avatar)
+        div(class="mb-4")
+            img(
+                src=topic.avatar 
+                style="width: 100px"
+            )
+    if(topic.parentId)
+        div(class="mb-4")
+            span Chủ đề cha: 
+            div #{topic.parentInfo.title}
+    if(topic.status)
+        div(class="mb-4")
+            span Trạng thái: 
+            if(topic.status ==="active")
+                span(class="badge badge-success") Hoạt động
+            else 
+                span(class="badge badge-danger") Không hoạt động
+    if(topic.description)
+        div(class="mb-4")
+            span Mô tả:
+                div #{topic.description}
+    a(
+        href=`/${prefixAdmin}/topics/edit/${topic.id}`
+        class = "btn btn-warning btn-sm"
+    ) Chỉnh sửa 
+    //- script(src="/admin/js/product.js")
+    //- script(src="/admim/js/script.js") 

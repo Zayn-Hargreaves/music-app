@@ -1,0 +1,6 @@
+include info-item.pug
+
+mixin layout-item(products)
+    .row#topic-container
+        each item in products
+            +info-item(item)
